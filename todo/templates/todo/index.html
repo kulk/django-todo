@@ -1,4 +1,16 @@
-<h1>Index</h1>
-{% for task in tasks %}
-	<p>{{ task.body }}</p>
-{% endfor %}
+{% extends 'todo/base.html' %}
+
+{% block content %}
+	<h1>Index</h1>
+
+    <form method="POST">{% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Submit</button>
+    </form>
+
+	<h3>Tasks:</h3>
+	{% for task in tasks %}
+		<p>{{ task.body }}</p>
+	{% endfor %}
+
+{% endblock %}
