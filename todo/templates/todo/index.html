@@ -7,10 +7,12 @@
         {{ form.as_p }}
         <button type="submit">Submit</button>
     </form>
-
+	
 	<h3>Tasks:</h3>
 	{% for task in tasks %}
-		<p>{{ task.body }}</p>
+		<p>
+			{{ task.body }}			
+			<a href="{% url 'delete' pk=task.pk %}">X</a>
+		</p>
 	{% endfor %}
-
 {% endblock %}
