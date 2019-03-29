@@ -1,18 +1,19 @@
 {% extends 'todo/base.html' %}
+{% load static %}
+{% block content %}		
+			
+			<h5>Enter task:</h5>
+			<form method="POST">{% csrf_token %}
+				{{ form.body }}
+				<button class="submitButton" type="submit">Submit</button>
+			</form>
+			
+			<h5>Tasks:</h5>
+			{% for task in tasks %}
+				<p>
+					{{ task.body }}			
+					<a class="delete" href="{% url 'delete' pk=task.pk %}"><img src="{% static 'img/bin_icon.png' %}" width="18" height="18"></a>
+				</p>
+			{% endfor %}
 
-{% block content %}
-	<h1>Index</h1>
-
-    <form method="POST">{% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Submit</button>
-    </form>
-	
-	<h3>Tasks:</h3>
-	{% for task in tasks %}
-		<p>
-			{{ task.body }}			
-			<a href="{% url 'delete' pk=task.pk %}">X</a>
-		</p>
-	{% endfor %}
 {% endblock %}

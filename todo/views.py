@@ -37,5 +37,6 @@ def register(request):
 			return redirect('index')
 	else:
 		form = UserCreationForm()
-	return render(request, 'todo/register.html', {'form': form})
+	template = 'register'
+	return render(request, 'todo/register.html', {'form': form, 'template':template })
 	
